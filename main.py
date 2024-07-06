@@ -19,6 +19,31 @@ print("Enter a second number")
 num2 = int(input())
 print(num1 * num2)
 
+#input/output and len function
 print("Enter a name")
 numOfChar = len(input())
 print(numOfChar)
+
+name = "Martin"
+print(name)
+
+print("What is your name?")
+name = input()
+lenght = len(name)
+print(lenght)
+
+# variables
+a = input()
+b = input()
+
+c = a
+a = b
+b = c
+
+print(a)
+print(b)
+
+# Variable naming
+username = input() # input for username of some user
+age = input() # input for age of some user
+email = input() # input for email of some user

@@ -1,1 +1,1 @@
-Python by building projects. Дata science, automation, build websites, games and apps!
+Python by building projects. Data science, automation, build websites, games and apps!

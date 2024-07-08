@@ -12,14 +12,16 @@ if height > 120:
     elif age <= 18:
         bill = 7
         print("Youth tickets are $7.")
+    elif age >= 45 and age <= 55:
+        print("Everything is going to be ok. Have a free ride.")
     else:
         bill = 10
         print("Adult tickets are $10.")
 
-wants_photo = input("Would you like a photo? Y or N!")
-if wants_photo == "Y":
-    bill +=3
-    print("Thank you!")
+    wants_photo = input("Would you like a photo? Y or N!")
+    if wants_photo == "Y":
+        bill +=3
+
     print(f"Your bill is: ${bill}!")
 else:
     print("Sorry, you have to grow taller before you can ride!")

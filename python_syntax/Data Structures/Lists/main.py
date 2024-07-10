@@ -17,3 +17,11 @@ number_of_one_balkan_countries = len(balkan_countries)
 print(number_of_one_balkan_countries)
 balkan_countries.clear() # removing all elements of this list
 print(balkan_countries)
+
+print("\n\n\n\n")
+male_names = ["Martin", "Filip", "Tane", "Marko"]
+female_names = ["Natasha", "Marinela", "Anastasija", "Viktorija"]
+print(male_names)
+print(female_names)
+mix_names = [[male_names, female_names]] # nested list
+print(mix_names)

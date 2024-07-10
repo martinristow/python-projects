@@ -21,7 +21,8 @@ print(balkan_countries)
 print("\n\n\n\n")
 male_names = ["Martin", "Filip", "Tane", "Marko"]
 female_names = ["Natasha", "Marinela", "Anastasija", "Viktorija"]
-print(male_names)
-print(female_names)
-mix_names = [[male_names, female_names]] # nested list
-print(mix_names)
+#print(male_names)
+#print(female_names)
+mix_names = [male_names, female_names] # nested list
+#print(mix_names)
+print(mix_names[1][3])

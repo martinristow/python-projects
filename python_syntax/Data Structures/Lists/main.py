@@ -13,5 +13,7 @@ balkan_countries.sort() # sorting list starts with alphabet a
 print(balkan_countries)
 balkan_countries.reverse() # sorting list on reverse
 print(balkan_countries)
+number_of_one_balkan_countries = len(balkan_countries)
+print(number_of_one_balkan_countries)
 balkan_countries.clear() # removing all elements of this list
 print(balkan_countries)

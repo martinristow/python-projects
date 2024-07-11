@@ -1,0 +1,8 @@
+for symbol in range(nr_symbols):
+    symbol_lists.append(random.choice(symbols))
+
+    nr_numbers
+
+number_lists = []
+for number in range(nr_numbers)
+    number_lists.append(random.choice(numbers))

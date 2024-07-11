@@ -44,7 +44,7 @@ if choise1 == "left":
         elif choise3 == "blue":
             print("Eaten by beasts.Game Over.")
         elif choise3 == "red":
-            print("Eaten by beasts.Game Over.")
+            print("Burned by fire. Game Over.")
         else:
             print("You chose a door that doesn't exist. Game Over!")
     else:

@@ -1,33 +1,35 @@
 #Step 5
-
+#from replit import clear
 import random
-import hangman_words
-import hangman_art
+from hangman_words import word_list
+from hangman_art import logo, stages
 
-#TODO-1: - Update the word list to use the 'word_list' from hangman_words.py DONE
-chosen_word = random.choice(hangman_words.word_list)
+
+#chosen_word = random.choice(hangman_words.word_list)
+chosen_word = random.choice(word_list)
 word_length = len(chosen_word)
 
 end_of_game = False
 lives = 6
 
-#TODO-3: - Import the logo from hangman_art.py and print it at the start of the game. DONE
-logo = hangman_art.logo
+
+logo = logo
 print(logo)
 #Testing code
-print(f'Pssst, the solution is {chosen_word}.')
+#print(f'Pssst, the solution is {chosen_word}.')
 
 #Create blanks
 display = []
 for _ in range(word_length):
     display += "_"
 
+guess_list = [] # empty list
+
 while not end_of_game:
     guess = input("Guess a letter: ").lower()
-
-    guess_list = []
-    #TODO-4: - If the user has entered a letter they've already guessed, print the letter and let them know. IN PROCESS
-    if guess in  guess_list:
+    #clear()
+    #TODO-4: - If the user has entered a letter they've already guessed, print the letter and let them know. DONE
+    if guess not in  guess_list:
         guess_list.append(guess)
     else:
         print(f"You've already guessed bukva {guess}")
@@ -42,7 +44,10 @@ while not end_of_game:
 
     #Check if user is wrong.
     if guess not in chosen_word:
-        #TODO-5: - If the letter is not in the chosen_word, print out the letter and let them know it's not in the word. IN PROCESS
+
+        #TODO-5: - If the letter is not in the chosen_word, print out the letter and let them know it's not in the word. DONE
+        print(f" You guessed{guess}, that's not in the word. You lose a life.")
+
         lives -= 1
         if lives == 0:
             end_of_game = True
@@ -57,4 +62,4 @@ while not end_of_game:
         print("You win.")
 
     #TODO-2: - Import the stages from hangman_art.py and make this error go away. DONE
-    print(hangman_art.stages[lives])
+    print(stages[lives])

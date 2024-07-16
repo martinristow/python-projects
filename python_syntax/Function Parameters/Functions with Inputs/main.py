@@ -14,7 +14,7 @@ print("\n")
 
 # Function that allows for input
 # name is a Parameter
-# "Martin" is a Argument
+# "Martin" is Argument
 def greet_with_input(name):
     print(f"Hello {name}")
     print(f"How are you {name}")

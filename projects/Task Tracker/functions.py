@@ -49,8 +49,6 @@ def print_all_task():
     else:
         print("You enter a wrong number! Only '1' or '2'.")
 
-#   6) Function to sort tasks:
-# Create a function that sorts tasks by priority and displays the sorted tasks.
 
 def sort_task():
     lower_task = []

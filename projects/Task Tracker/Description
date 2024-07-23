@@ -1,0 +1,27 @@
+Project Description:
+
+"Task Tracker" is an application that allows users to add, remove, and update tasks.
+Users can view all tasks, sort them by priority and status, and filter tasks that are completed or incomplete.
+
+
+TODO List:
+1) Initialization of tasks and variables:
+Create a list to store tasks, where each task will be a dictionary with attributes like name, priority, and status.
+
+2) Function to add a task:
+Create a function that takes information for a new task and adds it to the task list.
+
+3) Function to remove a task:
+Create a function that takes the name of a task and removes it from the task list.
+
+4) Function to update the status of a task:
+Create a function that takes the name of a task and a new status, and updates the task's status.
+
+5) Function to display tasks:
+Create a function that displays all tasks, or filtered tasks based on status.
+
+6) Function to sort tasks:
+Create a function that sorts tasks by priority and displays the sorted tasks.
+
+7) Main menu logic:
+Create a menu that allows users to choose options to add, remove, update, display, and sort tasks.

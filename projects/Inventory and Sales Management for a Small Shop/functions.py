@@ -1,6 +1,5 @@
 product_list = []
 initial_amount = 0
-
 stop_function = False
 def product_exists(name):
     for product in product_list:
@@ -86,3 +85,35 @@ def remove_product():
         else:
             print("Product not exists in the inventory.")
     show_inventory()
+
+
+# Функција за извршување на продажба:
+# Корисниците можат да вршат продажни трансакции со внесување на името на производот и продадената количина.
+# Системот ќе го пресмета вкупниот износ на продажба, ќе го ажурира залихите со намалување на продадената
+# количина и ќе го зголеми салдото на продавницата за продажната сума. Оваа функционалност е суштинска за
+# секојдневните операции во продавницата.
+
+def sell_product():
+    global initial_amount
+    name = input("Product Name:")
+    if product_exists(name):
+        quantity = int(input("Enter the product quantity:"))
+        if quantity < 0:
+            print("You entered a negative number!")
+        else:
+            for product in product_list:
+                if product["Name"] == name:
+                    remaining_quantities = product["Quantity"] - quantity
+                    if not remaining_quantities <= 0:
+                        product["Quantity"] -= quantity
+                        initial_amount += product["Price"] * quantity
+                        print(f"Product Sold: {name}. New Quantity :{remaining_quantities}.")
+                        break
+                    else:
+                        print(f"The quantity you want to sell is not possible, because there are still products {product["Quantity"]} left")
+            print(initial_amount)
+    else:
+        print("Product does not exist in the inventory.")
+
+
+

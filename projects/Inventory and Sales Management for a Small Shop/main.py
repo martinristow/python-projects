@@ -9,6 +9,7 @@ while add:
     print("Do you wanna update currently quantity of some product? Press 3")
     print("Price update? Press 4")
     print("Product remove? Press 5")
+    print("Product Sell? Press 6")
     digit = int(input())
     if digit == 1:
         functions.add_new_product()
@@ -22,5 +23,7 @@ while add:
         functions.update_price()
     elif digit == 5:
         functions.remove_product()
+    elif digit == 6:
+        functions.sell_product()
     else:
         break

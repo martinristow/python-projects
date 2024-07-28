@@ -55,7 +55,8 @@ Users will be able to update the prices of existing products. This functionality
 adapt to market changes and adjust pricing strategies accordingly.
 
 Function to Display Low Stock Alerts:
-The system will monitor stock levels and alert the user when a product's quantity falls below a certain threshold. This feature ensures that the shop can restock items in a timely manner and avoid running out of essential products.
+The system will monitor stock levels and alert the user when a product's quantity falls below a certain threshold. 
+This feature ensures that the shop can restock items in a timely manner and avoid running out of essential products.
 
 Function to Handle Discounts and Promotions:
 The system will include the ability to apply discounts or promotions to certain products during sales

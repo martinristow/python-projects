@@ -19,6 +19,15 @@ def format_data(account):
     account_country = account["country"]
     return f"{account_name}, a {account_description}, from {account_country}."
 
+def check(user_guess, a_followers, b_followers):
+    """Take the user guess and follower counts and returns if they got it right."""
+    global SCORE
+    # Use if statement to check if user is correct
+    if a_followers > b_followers:
+        return user_guess == "a"
+    else:
+        return user_guess == "b"
+
 # Display art
 print(logo)
 
@@ -40,16 +49,6 @@ while if_true:
     # Get follower count of each account
     account_a_followers = account_a["follower_count"]
     account_b_followers = account_b["follower_count"]
-
-
-    def check(user_guess, a_followers, b_followers):
-        """Take the user guess and follower counts and returns if they got it right."""
-        global SCORE
-        # Use if statement to check if user is correct
-        if a_followers > b_followers:
-            return user_guess == "a"
-        else:
-            return user_guess == "b"
 
     is_correct = check(user_guess, account_a_followers,account_b_followers)
 

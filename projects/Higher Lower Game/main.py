@@ -1,36 +1,65 @@
-from art import logo
-from art import vs
+from art import logo,vs
 from game_data import data
 from random import choice
-SCORE = 0
-if_true = False
 
-print(logo)
+if_true = True
+SCORE = 0
+
+# Generate a random account from the game data.
 def random_choose(data):
     choose_data = choice(data)
     data.remove(choose_data)
     return choose_data
-    # print(choose_data).
 
-def proverka(proveri,proveri1,odgovor):
-    global SCORE
-    if odgovor =="A" and proveri["follower_count"] > proveri_1["follower_count"]:
-        SCORE += 1
-        print(f"You're right! Current score: {SCORE}.")
-    elif odgovor == "B" and proveri["follower_count"] < proveri_1["follower_count"] :
-        SCORE += 1
+ # Format the account data into printable format
+def format_data(account):
+    """Takes the account data and returns the printable format."""
+    account_name = account["name"]
+    account_description = account["description"]
+    account_country = account["country"]
+    return f"{account_name}, a {account_description}, from {account_country}."
+
+# Display art
+print(logo)
+
+account_b = random_choose(data)
+
+# Make the game repeatable
+while if_true:
+    # Making account at position B became the next account at position A.
+    account_a = account_b
+    account_b = random_choose(data)
+
+    print(f"Compare A: {format_data(account_a)} .")
+    print(vs)
+    print(f"Against B: {format_data(account_b)}.")
+
+    # Ask user for a guess
+    user_guess = input("Who has more followers? Type 'A' or 'B': ").lower()
+
+    # Get follower count of each account
+    account_a_followers = account_a["follower_count"]
+    account_b_followers = account_b["follower_count"]
+
+
+    def check(user_guess, a_followers, b_followers):
+        """Take the user guess and follower counts and returns if they got it right."""
+        global SCORE
+        # Use if statement to check if user is correct
+        if a_followers > b_followers:
+            return user_guess == "a"
+        else:
+            return user_guess == "b"
+
+    is_correct = check(user_guess, account_a_followers,account_b_followers)
+
+    # Check if user is correct
+    if is_correct == True:
+        # Score keeping
+        SCORE+= 1
+        # Give user feedback on their guess
         print(f"You're right! Current score: {SCORE}.")
     else:
+        if_true = False
         print(f"Sorry, that's wrong. Final score: {SCORE}")
 
-
-while not if_true:
-    print(logo)
-    proveri = random_choose(data)
-    proveri_1 = random_choose(data)
-    print(f"Compare A: {proveri["name"]}, a {proveri["description"]}, from {proveri["country"]}.")
-    print(vs)
-    print(f"Compare B: {proveri_1["name"]}, a {proveri_1["description"]}, from {proveri_1["country"]}.")
-    ask = input("Who has more followers? Type 'A' or 'B': ")
-    proverka(proveri, proveri_1, ask)
-    if_true = True

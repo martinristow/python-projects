@@ -17,3 +17,4 @@ user2 = User(2, "ristov")
 
 user1.follow(user2)
 print(user2.followers)
+

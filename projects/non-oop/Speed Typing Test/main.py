@@ -19,7 +19,7 @@ def timer(new_timer):
     print("Time is up")
 
 
-choose = int(input("Choose a option to test your typing speed. Type '1' for 15 seconds or type '2' for 30 seconds: "))
+choose = int(input("Choose a option to mail_test_project your typing speed. Type '1' for 15 seconds or type '2' for 30 seconds: "))
 
 if choose == 1:
     print(text_for_timer1)

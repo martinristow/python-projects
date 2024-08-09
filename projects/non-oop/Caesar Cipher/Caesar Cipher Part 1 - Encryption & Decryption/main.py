@@ -49,7 +49,7 @@ def decrypt(decrypt_text,shift_text):
     # print output: "The decoded text is hello"
 
 
-# TODO-3: Check if the user wanted to encrypt or decrypt the message by checking the 'direction' variable. Then call the correct function based on that 'drection' variable. You should be able to test the code to encrypt *AND* decrypt a message.
+# TODO-3: Check if the user wanted to encrypt or decrypt the message by checking the 'direction' variable. Then call the correct function based on that 'drection' variable. You should be able to mail_test_project the code to encrypt *AND* decrypt a message.
 if direction == "decode":
     encrypt(plain_text=text, shift_amount=shift)
 elif direction == "encode":
@@ -59,5 +59,5 @@ elif direction == "encode":
 
     # print("You entered an error selection! Only 'encode' or 'decode' !")
 
-    #TODO-3: Call the encrypt function and pass in the user inputs. You should be able to test the code and encrypt a message.
+    #TODO-3: Call the encrypt function and pass in the user inputs. You should be able to mail_test_project the code and encrypt a message.
 

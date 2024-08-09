@@ -16,3 +16,7 @@ with open("new_file.txt", mode="a") as file: # mode="w" -> stariot text ke bide 
     file.write("\nNew text.")
 
 
+with open("/Users/PC/Desktop/text.txt", mode="r") as file:
+    contents = file.read()
+    print(contents)
+

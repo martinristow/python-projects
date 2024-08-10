@@ -1,22 +1,48 @@
 import turtle
 import pandas
+
 screen = turtle.Screen()
 screen.title("U.S. States Game")
 image = "blank_states_img.gif"
+screen.screensize(canvwidth=725, canvheight=491)
 screen.addshape(image)
-
 turtle.shape(image)
-data = pandas.read_csv("50_states.csv")
-for i in range(20):
-    answer_state = screen.textinput(title="Guess the State", prompt="What's another state's name?")
-    proverka = data[data["state"] == answer_state]
-    state = proverka.state.iloc[0]
-    x_cor = float(proverka.x.iloc[0])
-    y_cor = float(proverka.y.iloc[0])
 
-    turtle.penup()
-    turtle.color("red")
-    turtle.goto(x_cor, y_cor)
-    turtle.write(state, align="center", font=("Arial", 10, "normal"))
+text_turtle = turtle.Turtle()
+text_turtle.hideturtle()
+data = pandas.read_csv("50_states.csv")
+states_len = len(data)
+correct_states = 0
+
+is_game_on = True
+list_of_states = []
+dialog_title = "Guess the State"
+
+while is_game_on:
+    answer_state = screen.textinput(title=dialog_title, prompt="What's another state's name?").title()
+
+    if answer_state in list_of_states:
+        # If the state has already been guessed, don't increase the score or display it again.
+        continue
+
+    check = data[data["state"] == answer_state]
+
+    if not check.empty:
+        state = check.state.iloc[0]
+        x_cor = float(check.x.iloc[0])
+        y_cor = float(check.y.iloc[0])
+
+        text_turtle.penup()
+        text_turtle.color("red")
+        text_turtle.goto(x_cor, y_cor)
+
+        text_turtle.write(state, align="center", font=("Arial", 10, "normal"))
+
+        correct_states += 1
+        list_of_states.append(answer_state) # Add the correctly guessed state to the list
+
+        dialog_title = f"{correct_states} / {states_len} States Correct"
+    else:
+        is_game_on = False
 
 screen.exitonclick()

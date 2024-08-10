@@ -6,15 +6,24 @@
 #         print(stripped_data)
 
 # THIS WAY IS SO PAINFUL IF WE HAVE A LOT OF DATA
-import csv
+# import csv
+#
+# with open("weather_data.csv") as data_file:
+#     temperature = []
+#     data = csv.reader(data_file)
+#     # print(data)
+#     # next(data) # first row is jumped
+#     for row in data:
+#         if row[1] != "temp":
+#             # print(row[1])
+#             temperature.append(int(row[1]))
+#     print(temperature)
 
-with open("weather_data.csv") as data_file:
-    temperature = []
-    data = csv.reader(data_file)
-    # print(data)
-    # next(data) # first row is jumped
-    for row in data:
-        if row[1] != "temp":
-            # print(row[1])
-            temperature.append(int(row[1]))
-    print(temperature)
+
+# PANDAS FRAMEWORK
+import pandas
+
+data = pandas.read_csv("weather_data.csv")
+print(data)
+temperatures = data["temp"]
+print(temperatures)

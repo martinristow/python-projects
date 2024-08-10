@@ -45,12 +45,19 @@ data = pandas.read_csv("weather_data.csv")
 # print(data[data.day == "Monday"])
 # print(data[data.temp == data.temp.max()])
 
-monday = data[data.day == "Monday"]
-# print(monday.condition)
-monday_temp = monday.temp[0]
-# print(monday_temp)
-# F= (C*9 /5) + 32
-monday_temp_F = (monday_temp * 9 / 5) + 32
-print(monday_temp_F)
+# monday = data[data.day == "Monday"]
+# # print(monday.condition)
+# monday_temp = monday.temp[0]
+# # print(monday_temp)
+# # F= (C*9 /5) + 32
+# monday_temp_F = (monday_temp * 9 / 5) + 32
+# print(monday_temp_F)
 
+data_dict = {
+    "students": ["Natasha", "Martin", "Filip", "Tane"],
+    "scores": [100, 52, 95, 99]
+}
 
+datas = pandas.DataFrame(data_dict)
+datas.to_csv("new_data.csv")
+# print(pandas.read_csv("new_data.csv"))

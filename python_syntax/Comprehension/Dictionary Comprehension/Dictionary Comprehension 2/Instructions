@@ -1,0 +1,10 @@
+Dictionary Comprehension 2
+You are going to use Dictionary Comprehension to create a dictionary called weather_f that takes each temperature in degrees Celsius and converts it into degrees Fahrenheit.
+
+To convert temp_c into temp_f use this formula:
+
+(temp_c * 9/5) + 32 = temp_f
+
+Celsius to Fahrenheit chart
+
+**Do NOT** Create a dictionary directly. Try to use Dictionary Comprehension instead of a Loop.

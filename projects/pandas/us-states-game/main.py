@@ -17,8 +17,15 @@ correct_states = 0
 is_game_on = True
 list_of_states = []
 dialog_title = "Guess the State"
+winning_text = turtle.Turtle()
+winning_text.hideturtle()
 
 while is_game_on:
+    if len(list_of_states) == 50:
+        winning_text.write("Congrats you guessed all states in US!", align="center", font=("Arial", 20, "normal"))
+        is_game_on = False
+        break
+
     answer_state = screen.textinput(title=dialog_title, prompt="What's another state's name?").title()
 
     if answer_state in list_of_states:
@@ -39,10 +46,10 @@ while is_game_on:
         text_turtle.write(state, align="center", font=("Arial", 10, "normal"))
 
         correct_states += 1
-        list_of_states.append(answer_state) # Add the correctly guessed state to the list
+        list_of_states.append(answer_state)  # Add the correctly guessed state to the list
 
         dialog_title = f"{correct_states} / {states_len} States Correct"
     else:
-        is_game_on = False
+        continue
 
 screen.exitonclick()

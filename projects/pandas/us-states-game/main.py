@@ -30,10 +30,11 @@ while is_game_on:
     answer_state = screen.textinput(title=dialog_title, prompt="What's another state's name?").title()
 
     if answer_state == "Exit":
-        missed_states = []
-        for state in all_states:
-            if state not in list_of_states:
-                missed_states.append(state)
+        missed_states = [state for state in all_states if state not in list_of_states]
+        # missed_states = []
+        # for state in all_states:
+        #     if state not in list_of_states:
+        #         missed_states.append(state)
         new_data = pandas.DataFrame(missed_states)
         new_data.to_csv("states_to_learn.csv")
         break

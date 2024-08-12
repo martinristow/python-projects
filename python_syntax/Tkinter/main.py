@@ -10,6 +10,7 @@ def button_clicked():
 window = Tk()
 window.title("My first GUI Program")
 window.minsize(width=500, height=300)
+window.config(padx=20, pady=20)
 
 # Label
 my_label = Label(text="I am a Label!", font=("Arial", 15, "normal"))
@@ -20,6 +21,7 @@ my_label.config(text="Hello")
 # my_label.place(x=100, y=200)
 # Grid is the easiest ways of visualizing and creating the layout
 my_label.grid(column=0, row=0)
+my_label.config(padx=35, pady= 50)
 
 
 # Button
@@ -29,10 +31,14 @@ button = Button(text="Click me", command=button_clicked)
 # button.place(x=100, y=250)
 button.grid(column=1, row=1)
 
+# New Button
+new_button = Button(text="New Button")
+new_button.grid(column=3, row=0)
+
 # Entry
 input = Entry(width=10)
 # input.pack()
-input.grid(column=2, row=2)
+input.grid(column=4, row=4)
 
 # NOTICE -----------------
 # cannot use geometry manager pack inside . which already has slaves managed by grid

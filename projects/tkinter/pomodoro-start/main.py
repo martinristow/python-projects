@@ -10,16 +10,40 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
+check = ""
+timer = None
+
+
 # ---------------------------- TIMER RESET ------------------------------- # 
+def timer_reset():
+    global reps
+    global check
+    window.after_cancel(timer)
+    reps = 0
+    check = ""
+    timer_textt.config(text="Timer")
+    check_marks.config(text="")
+    canvas.itemconfig(timer_text, text="00:00")
+    # Re-enable the start button
+    start_button.config(state=NORMAL)
 
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 def start_timer():
     global reps
+    global check
     work_sec = WORK_MIN * 60
     short_break_sec = SHORT_BREAK_MIN * 60
     long_break_sec = LONG_BREAK_MIN * 60
     reps += 1
+
+    # Disable the start button once the timer starts
+    start_button.config(state=DISABLED)
+
+    if reps % 2 == 0:
+        check += "✔"
+        check_marks.config(text=check)
+
     if reps % 8 == 0:
         timer_textt.config(text="Break", fg=RED)
         count_down(long_break_sec)
@@ -39,7 +63,8 @@ def count_down(count):
         count_sec = f"0{count_sec}"
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
     if count > 0:
-        window.after(1000, count_down, count - 1)
+        global timer
+        timer = window.after(1000, count_down, count - 1)
     else:
         start_timer()
 
@@ -69,11 +94,11 @@ start_button = Button(text="Start", bg="white", width=6, highlightthickness=0, c
 start_button.grid(column=0, row=2)
 
 # Reset Button
-reset_button = Button(text="Reset", bg="white", width=6, highlightthickness=0)
+reset_button = Button(text="Reset", bg="white", width=6, highlightthickness=0, command=timer_reset)
 reset_button.grid(column=2, row=2)
 
 # Check Marks Label
-check_marks = Label(text="✔", fg=GREEN, bg=YELLOW)
+check_marks = Label(fg=GREEN, bg=YELLOW)
 check_marks.grid(column=1, row=3)
 
 

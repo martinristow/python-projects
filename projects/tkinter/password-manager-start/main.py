@@ -60,6 +60,7 @@ def save():
             clear()
 
 
+# ---------------------------- FIND PASSWORD ------------------------------- #
 def find_password():
     try:
         with open("data.json", "r") as data_file:
@@ -79,6 +80,7 @@ def find_password():
                                                            f"Password: {password}")
 
 
+# ---------------------------- CLEAR WEBSITE & PASSWORD ------------------------------- #
 def clear():
     website_input.delete(0, END)
     password_input.delete(0, END)
@@ -110,7 +112,7 @@ password_label = Label(text="Password:")
 password_label.grid(column=0, row=3)
 
 # Website Input
-website_input = Entry(width=35)
+website_input = Entry(width=21)
 website_input.grid(column=1, row=1)
 website_input.focus()
 
@@ -124,7 +126,7 @@ password_input = Entry(width=21)
 password_input.grid(column=1, row=3)
 
 # Generate Password Button
-generate_password_button = Button(text="Generate Password", command=generate_password)
+generate_password_button = Button(text="Generate Password", width=14, command=generate_password)
 generate_password_button.grid(column=2, row=3)
 
 # Search Button

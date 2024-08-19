@@ -9,15 +9,6 @@ response = requests.get(url="http://api.open-notify.org/iss-now.json")
 # 4XX: You Screwed Up
 # 5XX: I Screwed Up
 
-# print(response.status_code)
-# if response.status_code != 200:
-#     raise Exception("Bad response from ISS API")
-# This is really painful way to do this
-# if response.status_code == 404:
-#     raise Exception("That resource does not exist.")
-# elif response.status_code == 401:
-#     raise Exception("You are not authorised to access this data.")
-
 response.raise_for_status()
 
 data = response.json()

@@ -36,11 +36,25 @@ headers = {
 PIXEL_CREATION_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{graph_config['id']}"
 
 today = datetime.now().strftime("%Y%m%d")
-# print(today)
+print(today)
 pixel_config = {
     "date": today,
     "quantity": "122.4",
 }
 
-response = requests.post(url=PIXEL_CREATION_ENDPOINT, json=pixel_config, headers=headers)
-print(response.text)
+# response = requests.post(url=PIXEL_CREATION_ENDPOINT, json=pixel_config, headers=headers)
+# print(response.text)
+
+PIXEL_UPDATE_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{graph_config['id']}/{today}"
+
+pixel_update_config = {
+    "quantity": "54.3"
+}
+
+# response = requests.put(url=PIXEL_UPDATE_ENDPOINT, json=pixel_update_config, headers=headers)
+# print(response)
+
+DELETE_PIXEL_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{graph_config['id']}/{today}"
+
+# response = requests.delete(url=DELETE_PIXEL_ENDPOINT, headers=headers)
+# print(response.text)

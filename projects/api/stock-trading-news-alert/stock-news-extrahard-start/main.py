@@ -2,8 +2,12 @@ import requests
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
+
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
-api_key = ""
+NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
+
+STOCK_API_KEY = ""
+NEWS_API_KEY = ""
 account_sid = ""
 auth_token = ""
 
@@ -13,7 +17,7 @@ auth_token = ""
 stock_params = {
     "function": "TIME_SERIES_DAILY",
     "symbol": STOCK,
-    "apikey": api_key,
+    "apikey": STOCK_API_KEY,
 }
 response = requests.get(url=STOCK_ENDPOINT, params=stock_params)
 print(response)
@@ -39,12 +43,23 @@ difference = abs(float(yesterday_closing_price) - float(day_before_yesterday_clo
 
 #Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
 diff_percent = (difference / float(yesterday_closing_price)) * 100
-if diff_percent > 5:
-    print("Get News")
 
 
 ## STEP 2: Use https://newsapi.org
 # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
+if diff_percent > 5:
+    news_params = {
+        "apiKey": NEWS_API_KEY,
+        "q": COMPANY_NAME,
+    }
+
+    news_response = requests.get(url=NEWS_ENDPOINT, params=news_params)
+    news_response.raise_for_status()
+    articles = news_response.json()["articles"]
+    # print(articles)
+
+    three_articles = articles[:3]
+    print(three_articles)
 
 ## STEP 3: Use https://www.twilio.com
 # Send a separate message with the percentage change and each article's title and description to your phone number.

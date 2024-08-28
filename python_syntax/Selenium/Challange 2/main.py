@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 # Keep Chrome Browser open after program finishes
 chrome_options = webdriver.ChromeOptions()
@@ -19,6 +20,17 @@ driver.get(url="https://en.wikipedia.org/wiki/Main_Page")
 
 # None in on anchor tag using CSS selectors
 article_count = driver.find_element(By.CSS_SELECTOR, value="#articlecount a")
-print(article_count.text)
+# article_count.click()
 
-driver.quit()
+# Find element by Link Text
+all_portals = driver.find_element(By.LINK_TEXT, value="Content portals")
+# all_portals.click()
+
+# Find the "Search" <input> by Name
+search_button = driver.find_element(By.NAME, value="search")
+
+# Sending keyboard input to Selenium
+search_button.send_keys("Python", Keys.ENTER)
+
+
+# print(search_button.get_attribute("placeholder"))

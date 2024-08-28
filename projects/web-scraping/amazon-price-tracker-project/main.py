@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-URL = "https://appbrewery.github.io/instant_pot/"
-live_url = "https://www.amazon.com/dp/B075CYMYK6?psc=1&ref_=cm_sw_r_cp_ud_ct_FM9M699VKHTT47YD50Q6"
+# URL = "https://appbrewery.github.io/instant_pot/"
+live_url = "https://www.amazon.com/dp/B075CYMYK6?ref_=cm_sw_r_cp_ud_ct_FM9M699VKHTT47YD50Q6&th=1"
 
 
 # ====================== Add Headers to the Request ===========================
@@ -34,7 +34,7 @@ header = {
 #     "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8"
 # }
 
-response = requests.get(url=URL, headers=header)
+response = requests.get(url=live_url, headers=header)
 amazon_website_html = response.text
 
 soup = BeautifulSoup(amazon_website_html, "html.parser")
@@ -58,9 +58,9 @@ title = soup.find(id="productTitle").getText().strip()
 print(title)
 
 # Set the price below which you would like to get a notification
-BUY_PRICE = 100
+BUY_PRICE = 70
 
-if price_as_float < BUY_PRICE:
+if price_as_float > BUY_PRICE:
     message = f"{title} is on sale for {price}!"
 
     with smtplib.SMTP(os.environ["SMTP_ADDRESS"]) as connection:
@@ -68,5 +68,5 @@ if price_as_float < BUY_PRICE:
         connection.login(os.environ["EMAIL_ADDRESS"], os.environ["EMAIL_PASSWORD"])
         connection.sendmail(from_addr=os.environ["EMAIL_ADDRESS"],
                             to_addrs=os.environ["EMAIL_ADDRESS_TO_SEND"],
-                            msg=f"Subject:Amazon Price Alert!\n\n{message}\n{URL}".encode("utf-8")
+                            msg=f"Subject:Amazon Price Alert!\n\n{message}\n{live_url}".encode("utf-8")
                             )

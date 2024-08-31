@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 from InstagramClass import InstaFollower
-
 load_dotenv()
 
 EMAIL = os.environ["INSTAGRAM_EMAIL"]
@@ -10,3 +9,7 @@ SIMILAR_ACC = os.environ["SIMILAR_ACCOUNT"]
 
 instagram = InstaFollower()
 instagram.login(EMAIL, PASSWORD)
+
+instagram.find_followers(SIMILAR_ACC)
+
+instagram.follow()

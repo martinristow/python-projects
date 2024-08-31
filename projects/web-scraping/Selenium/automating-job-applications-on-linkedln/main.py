@@ -34,10 +34,14 @@ log_in_button.click()
 # save_job = driver.find_element(By.CSS_SELECTOR, value=".mt5 .jobs-save-button")
 # save_job.click()
 
-easy_apply_button = driver.find_element(By.CSS_SELECTOR, value=".mt5 .jobs-s-apply")
-easy_apply_button.click()
+all_listing = driver.find_elements(By.CSS_SELECTOR, value=".job-card-container--clickable")
+for listing in all_listing:
+       print("otvoreno")
 
-submit_application = driver.find_element(By.CSS_SELECTOR, value=".mt3 .pv4 span")
-# mt3 glaven div, pv4 vtor div, span element od vtor div
-# print(submit_application.text)
-submit_application.click()
+# easy_apply_button = driver.find_element(By.CSS_SELECTOR, value=".mt5 .jobs-s-apply")
+# easy_apply_button.click()
+#
+# submit_application = driver.find_element(By.CSS_SELECTOR, value=".mt3 .pv4 span")
+# # mt3 glaven div, pv4 vtor div, span element od vtor div
+# # print(submit_application.text)
+# submit_application.click()

@@ -26,3 +26,14 @@ class Zillow:
                 all_prices.append(pr.text.split("+ 1 bd")[0])
 
         # print(len(all_prices))
+
+    def get_address(self):
+        address_html = self.soup.find_all(name="address", attrs={"data-test": "property-card-addr"})
+        # print(address_html)
+        address_list = [address.text.strip() for address in address_html]
+        print(address_list[0])
+
+    def get_link(self):
+        link_html = self.soup.find_all(name="a", attrs={"data-test": "property-card-link"})
+        all_links = [link["href"] for link in link_html]
+        print(all_links)

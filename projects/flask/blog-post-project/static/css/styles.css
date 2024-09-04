@@ -1,0 +1,70 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Tahoma, cursive;
+}
+
+.background {
+    background-color: #f0f4f8; /* Светло сива позадина */
+    min-height: calc(100vh - 60px); /* Пресметај висина од прозорецот помалку висината на footer-от */
+    box-sizing: border-box;
+    padding-bottom: 60px; /* Простор за footer */
+}
+
+.text {
+    background-color: #3498db; /* Поинтензивна боја за текстот */
+    color: white;
+    padding: 60px 20px; /* Помалку вертикален padding, со мал хоризонтален padding */
+    text-align: center;
+    margin: 0;
+    border-bottom: 5px solid #2980b9; /* Дебела линија под текстот */
+}
+
+.post-file, .posts {
+    background-color: white;
+    border-radius: 8px; /* Заоблени аглови */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Сенка за подигнување на елементот */
+    padding: 30px;
+    width: 70%;
+    margin: 20px auto; /* Вертикален простор помеѓу постовите */
+}
+
+.post-file h1, .post-file h3, .posts p {
+    margin: 0;
+    padding: 0;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    background-color: #2980b9; /* Поинтензивна боја за footer */
+    color: white;
+    padding: 15px 0; /* Поголем padding */
+    font-family: Tahoma, cursive;
+}
+
+/* Стилови за Read копчето */
+a.read-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #3498db; /* Позадинска боја */
+    border: none;
+    border-radius: 5px; /* Заоблени аглови */
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s; /* Преливи за ховер */
+}
+
+a.read-button:hover {
+    background-color: #2980b9; /* Потемнување на бојата при ховер */
+    transform: scale(1.05); /* Лека зголемување при ховер */
+}
+
+a.read-button:active {
+    background-color: #1f6f9f; /* Подлабока боја при кликање */
+}

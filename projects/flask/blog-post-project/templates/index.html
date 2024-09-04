@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<header><h1 class="text">My Blog</h1></header>
+<body class="background">
+
+{% for blog in posts %}
+<div class="posts">
+    <p><b>{{ blog["title"] }}</b></p>
+    <p>{{ blog["subtitle"] }}</p>
+    <br>
+    <p><a class="read-button" href="{{ url_for('read_blog', id=blog['id']) }}">Read</a></p>
+</div>
+{% endfor %}
+</body>
+<footer><p class="footer">Made with ❤️ in Sveti Nikole.</p></footer>
+</html>

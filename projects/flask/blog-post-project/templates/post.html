@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<header><h1 class="text">My Blog</h1></header>
+<body class="background">
+    <div class="post-file">
+     <h1>{{ post["title"] }}</h1>
+     <h3>{{ post["subtitle"] }}</h3>
+     <p>{{ post["body"] }}</p>
+    </div>
+</body>
+<footer><p class="footer">Made with ❤️ in Sveti Nikole.</p></footer>
+</html>

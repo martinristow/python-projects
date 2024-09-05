@@ -1,7 +1,18 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-	<title>Access Denied</title>
+{% extends "base.html" %}
+
+{% block title %}Access Denied{% endblock %}
+
+{% block styling %}
+<!--super() go dodavame dokolku sakame da gi nasledime site raboti od nekoja klasa
+kako sto pravime nie vo ovoj slucaj, znaci ja nasleduvame pozadinata, no dadavame
+uste eden nas element-->
+	{{ super() }}
+	h1{
+		color:red
+	}
+{% endblock %}
+
+{% block content %}
 </head>
 <body>
 	<div class="container">
@@ -10,4 +21,4 @@
 		<p><a href="https://giphy.com/gifs/cheezburger-funny-dog-fails-1xeVd1vr43nHO">via GIPHY</a></p>
 	</div>
 </body>
-</html>
+{% endblock %}

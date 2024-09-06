@@ -8,7 +8,8 @@
     <div class="col-sm-12 col-md-8">
 
       <h1>Add a new cafe into the database</h1>
-      {{ render_form(form, action='/add', method="post") }}
+      {{ render_form(form, action=url_for('add_cafe'), method="post") }}
+
       <!-- This is where your WTForm will go -->
 
 	  <p class="space-above"><a href="{{ url_for('cafes') }}">See all cafes</a></p>

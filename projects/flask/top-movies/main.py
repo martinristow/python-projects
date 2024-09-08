@@ -10,7 +10,7 @@ import requests
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = ''
+app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 Bootstrap5(app)
 
 
@@ -41,11 +41,17 @@ with app.app_context():
     db.create_all()
 
 
+class RateMovieForm(FlaskForm):
+    rating = StringField('Your Rating Out of 10 e.g. 7.5')
+    review = StringField('Your Review')
+    submit = SubmitField('Done')
+
 
 # with app.app_context():
 #     for movie in movies:
 #         db.session.add(movie)
 #         db.session.commit()
+
 
 
 @app.route("/")
@@ -57,6 +63,25 @@ def home():
     return render_template("index.html", movies=all_movies)
 
 
+@app.route("/edit", methods=["POST", "GET"])
+def rate_movie():
+    form = RateMovieForm()
+    movie_id = request.args.get("id")
+    movie = db.get_or_404(Movie, movie_id)
+    if form.validate_on_submit():
+        movie.rating = float(form.rating.data)
+        movie.review = form.review.data
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template("edit.html", movie=movie, form=form)
+
+@app.route("/delete")
+def delete():
+    movie_id = request.args.get("id")
+    movie = db.get_or_404(Movie, movie_id)
+    db.session.delete(movie)
+    db.session.commit()
+    return redirect(url_for("home"))
 
 if __name__ == '__main__':
     app.run(debug=True)

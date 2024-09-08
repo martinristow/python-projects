@@ -47,6 +47,15 @@ class RateMovieForm(FlaskForm):
     submit = SubmitField('Done')
 
 
+# New Find Movie Form
+class FindMovieForm(FlaskForm):
+    title = StringField("Movie Title", validators=[DataRequired()])
+    img_url = StringField("IMG URL", validators=[DataRequired()])
+    year = StringField("Year", validators=[DataRequired()])
+    description = StringField("Description", validators=[DataRequired()])
+    ranking = StringField("Ranking", validators=[DataRequired()])
+    submit = SubmitField("Add Movie")
+
 # with app.app_context():
 #     for movie in movies:
 #         db.session.add(movie)
@@ -58,7 +67,7 @@ class RateMovieForm(FlaskForm):
 def home():
     # Read All Records
     with app.app_context():
-        result = db.session.execute(db.select(Movie).order_by(Movie.title))
+        result = db.session.execute(db.select(Movie).order_by(Movie.id))
         all_movies = result.scalars().all()
     return render_template("index.html", movies=all_movies)
 
@@ -82,6 +91,26 @@ def delete():
     db.session.delete(movie)
     db.session.commit()
     return redirect(url_for("home"))
+
+
+@app.route("/add", methods=["POST", "GET"])
+def add():
+    form = FindMovieForm()
+    if form.validate_on_submit():
+        movie_title = form.title.data
+        img_url = form.img_url.data
+        year = form.year.data
+        description = form.description.data
+        ranking = form.ranking.data
+
+        with app.app_context():
+            new_movie = Movie(title=movie_title, img_url=img_url, year=year, description=description, ranking=ranking, review="", rating=0)
+            db.session.add(new_movie)
+            db.session.commit()
+
+        return redirect(url_for("home"))
+    return render_template("add.html", form=form)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

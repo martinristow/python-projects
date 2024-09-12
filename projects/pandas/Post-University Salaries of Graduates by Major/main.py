@@ -109,3 +109,29 @@ highest_potential[['Undergraduate Major', 'Mid-Career 90th Percentile Salary']].
 # Majors with the Greatest Spread in Salaries
 highest_spread = clean_df.sort_values('Spread', ascending=False)
 highest_spread[['Undergraduate Major', 'Spread']].head()
+
+# --------------------------------------------------------------
+
+# Grouping and Pivoting Data with Pandas
+# Dokolku sakame da sumirame redovi što pripaǵaat na nekoja odredena kategorija.
+# Primer koja kategorija od diplomirani ima najvisoka prosečna plata? Za da odgovorime
+# na ova ni treba metodot .groupby(). Imame tri kategorii vo kolonata: STEM, HASS i Business.
+# Ḱe broime kolku majori imame vo sekoja kategorija
+clean_df.groupby('Group').count()
+
+# --------------------------------------------------------------
+
+# Sega mozeme da go koristime metodot .mean() za da najdeme prosecna plata po grupi
+clean_df.groupby('Group').mean(numeric_only=True)
+
+# --------------------------------------------------------------
+
+# Number formats in the Output
+#
+# The above is a little hard to read, isn't it? We can tell Pandas to print the numbers in our notebook
+# to look like 1,012.45 with the following line:
+# Ova nema potreba da go praveme bidejki sekako vekje go ima ovoj nacin na Google
+pd.options.display.float_format = '{:,.2f}'.format
+clean_df.groupby('Group').mean(numeric_only=True)
+
+# --------------------------------------------------------------

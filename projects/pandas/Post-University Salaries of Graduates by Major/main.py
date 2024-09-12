@@ -73,3 +73,39 @@ print(clean_df['Mid-Career Median Salary'][18])
 print(clean_df['Undergraduate Major'][18])
 
 # clean_df.loc[clean_df['Mid-Career Median Salary'].idxmin()]
+
+# --------------------------------------------------------------
+
+# Calculate the difference between the earnings of the 10th and 90th percentile?
+print(clean_df['Mid-Career 90th Percentile Salary'] -  clean_df['Mid-Career 10th Percentile Salary'])
+
+# Alternatively we can use and subtract method:
+clean_df['Mid-Career 90th Percentile Salary'].subtract(clean_df['Mid-Career 10th Percentile Salary'])
+
+# --------------------------------------------------------------
+
+spread_col = clean_df['Mid-Career 90th Percentile Salary'] - clean_df['Mid-Career 10th Percentile Salary']
+# We can add this to our existing dataframe with the .insert() method:
+# The first argument is the position of where the column should be inserted.
+# In our case, it's at position 1, so the second column.
+clean_df.insert(1, 'Spread', spread_col)
+clean_df.head()
+
+# --------------------------------------------------------------
+
+# Sorting by the Lowest Spread
+
+low_risk = clean_df.sort_values('Spread')
+low_risk[['Undergraduate Major', 'Spread']].head()
+
+# --------------------------------------------------------------
+
+# Majors with the Highest Potential
+highest_potential = clean_df.sort_values('Mid-Career 90th Percentile Salary', ascending=False)
+highest_potential[['Undergraduate Major', 'Mid-Career 90th Percentile Salary']].head()
+
+# --------------------------------------------------------------
+
+# Majors with the Greatest Spread in Salaries
+highest_spread = clean_df.sort_values('Spread', ascending=False)
+highest_spread[['Undergraduate Major', 'Spread']].head()

@@ -18,6 +18,9 @@ Do higher film budgets lead to more box office revenue? Let's find out if there'
 import pandas as pd
 import matplotlib.pyplot as plt
 
+import seaborn as sns
+from sklearn.linear_model import LinearRegression
+
 """# Notebook Presentation"""
 
 pd.options.display.float_format = '{:,.2f}'.format
@@ -158,7 +161,20 @@ money_losing.shape[0]/data_clean.shape[0]
 
 """# Seaborn for Data Viz: Bubble Charts"""
 
+plt.figure(figsize=(8,4), dpi=200)
 
+# set styling on a single chart
+with sns.axes_style('darkgrid'):
+  ax = sns.scatterplot(data=data_clean,
+                       x='USD_Production_Budget',
+                       y='USD_Worldwide_Gross',
+                       hue='USD_Worldwide_Gross',
+                       size='USD_Worldwide_Gross')
+
+  ax.set(ylim=(0, 3000000000),
+        xlim=(0, 450000000),
+        ylabel='Revenue in $ billions',
+        xlabel='Budget in $100 millions')
 
 """### Plotting Movie Releases over Time
 
@@ -169,7 +185,20 @@ money_losing.shape[0]/data_clean.shape[0]
 
 """
 
+plt.figure(figsize=(8,4), dpi=200)
 
+# set styling on a single chart
+with sns.axes_style('darkgrid'):
+  ax = sns.scatterplot(data=data_clean,
+                       x='Release_Date',
+                       y='USD_Production_Budget',
+                       hue='USD_Worldwide_Gross',
+                       size='USD_Worldwide_Gross')
+
+  ax.set(ylim=(0, 450000000),
+        xlim=(data_clean.Release_Date.min(), data_clean.Release_Date.max()),
+        ylabel='Budget in $100 millions',
+        xlabel='Year')
 
 """# Converting Years to Decades Trick
 
@@ -185,7 +214,11 @@ Here's how:
 4. Add the decades as a `Decade` column to the `data_clean` DataFrame.
 """
 
-
+dt_index = pd.DatetimeIndex(data_clean.Release_Date)
+years = dt_index.year
+decades = years//10*10
+data_clean['Decade'] = decades
+data_clean.head(3)
 
 """### Separate the "old" (before 1969) and "New" (1970s onwards) Films
 
@@ -196,11 +229,20 @@ Here's how:
 * What was the most expensive film made prior to 1970?
 """
 
-
+old_films = data_clean[data_clean.Decade <= 1960]
+new_films = data_clean[data_clean.Decade > 1960]
+old_films.describe()
+old_films.sort_values('USD_Production_Budget', ascending=False).head()
 
 """# Seaborn Regression Plots"""
 
-
+plt.figure(figsize=(8,4), dpi=200)
+with sns.axes_style("whitegrid"):
+  sns.regplot(data=old_films,
+            x='USD_Production_Budget',
+            y='USD_Worldwide_Gross',
+            scatter_kws = {'alpha': 0.4},
+            line_kws = {'color': 'black'})
 
 """**Challenge**: Use Seaborn's `.regplot()` to show the scatter plot and linear regression line against the `new_films`.
 <br>
@@ -218,20 +260,57 @@ Interpret the chart
 * Roughly how much would a film with a budget of $150 million make according to the regression line?
 """
 
+plt.figure(figsize=(8,4), dpi=200)
 
+# set styling on a single chart
+with sns.axes_style('darkgrid'):
+  ax = sns.regplot(data=new_films,
+            x='USD_Production_Budget',
+            y='USD_Worldwide_Gross',
+            scatter_kws = {'alpha': 0.4},
+            line_kws = {'color': 'orange'})
+
+  ax.set(ylim=(0, 3000000000),
+        xlim=(0, 450000000),
+        ylabel='Revenue in $ billions',
+        xlabel='Budget in $100 millions')
 
 """# Run Your Own Regression with scikit-learn
 
 $$ REV \hat ENUE = \theta _0 + \theta _1 BUDGET$$
 """
 
+regression = LinearRegression()
+# Explanatory Variable(s) or Feature(s)
+X = pd.DataFrame(new_films, columns=['USD_Production_Budget'])
 
+# Response Variable or Target
+y = pd.DataFrame(new_films, columns=['USD_Worldwide_Gross'])
+
+# Find the best-fit line
+regression.fit(X, y)
+
+# R-squared
+regression.score(X, y)
 
 """**Challenge**: Run a linear regression for the `old_films`. Calculate the intercept, slope and r-squared. How much of the variance in movie revenue does the linear model explain in this case?"""
 
+regression = LinearRegression()
+# Explanatory Variable(s) or Feature(s)
+X = pd.DataFrame(old_films, columns=['USD_Production_Budget'])
 
+# Response Variable or Target
+y = pd.DataFrame(old_films, columns=['USD_Worldwide_Gross'])
 
+# Find the best-fit line
+regression.fit(X, y)
 
+# # R-squared
+# regression.score(X, y)
+
+print(f'The slope coefficient is: {regression.coef_[0]}')
+print(f'The intercept is: {regression.intercept_[0]}')
+print(f'The r-squared is: {regression.score(X, y)}')
 
 """# Use Your Model to Make a Prediction
 
@@ -242,5 +321,9 @@ $$ REV \hat ENUE = \theta _0 + \theta _1 BUDGET$$
 **Challenge**:  How much global revenue does our model estimate for a film with a budget of $350 million?
 """
 
+22821538 + 1.64771314 * 350000000
 
-
+budget = 350000000
+revenue_estimate = regression.intercept_[0] + regression.coef_[0,0]*budget
+revenue_estimate = round(revenue_estimate, -6)
+print(f'The estimated revenue for a $350 film is around ${revenue_estimate:.10}.')

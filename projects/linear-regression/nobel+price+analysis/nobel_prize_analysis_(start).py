@@ -695,7 +695,7 @@ with sns.axes_style('whitegrid'):
                line_kws = {'color': 'black'},)
 
 plt.show()
-
+#
 with sns.axes_style("whitegrid"):
     sns.lmplot(data=df_data,
                x='year',

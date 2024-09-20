@@ -29,7 +29,7 @@ pd.options.display.float_format = '{:,.2f}'.format
 
 """# Read the Dataset"""
 
-df_apps = pd.read_csv('../../../../../Desktop/Section 76/apps.csv')
+df_apps = pd.read_csv('../../../../../../Desktop/Section 76/apps.csv')
 df_apps.head()
 
 """# Data Cleaning

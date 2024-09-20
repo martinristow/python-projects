@@ -40,4 +40,21 @@ for i, team in enumerate(teams):
         chunked_teams.append(temp_list)
         temp_list = []
 
-print(chunked_teams)
+# print(parts)
+# print(chunked_teams)
+
+data = {}
+
+for i, item in enumerate(parts):
+    # print(item)
+    data[item] = []
+    for j in range(len(chunked_teams[i])):
+        data[item].append(chunked_teams[i][j])
+        # print(chunked_teams[i][j])
+    # print('\n')
+
+df = pd.DataFrame.from_dict(data, orient='index').transpose()
+
+df.to_csv('nba_teams_data.csv', index=False)
+
+print("Data has been written to nba_teams_data.csv")

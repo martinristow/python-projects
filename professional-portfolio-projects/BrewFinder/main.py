@@ -3,9 +3,7 @@ import requests
 ENDPOINT = 'https://api.openbrewerydb.org/v1/breweries'
 
 
-
-def all_brewery():
-    response = requests.get(url=ENDPOINT)
+def values(response):
     data = response.json()
     for value in data:
         name = value['name']
@@ -15,13 +13,20 @@ def all_brewery():
         state_province = value['state_province']
         country = value['country']
         phone = value['phone']
-        state = value['state']
         street = value['street']
-        print(f"{name}\n"
-              f"{street}\n"
-              f"{city_}\n"
-              f"{country}\n"
-              f"{phone}\n")
+        print(f"Name: {name}")
+        print(f"Type: {type_brewery}")
+        print(f"Address: {street}, {address}")
+        print(f"City: {city_}")
+        print(f"State/Province: {state_province}")
+        print(f"Country: {country}")
+        print(f"Phone: {phone}")
+        print("-" * 40)
+
+
+def all_brewery():
+    response = requests.get(url=ENDPOINT)
+    values(response)
 
 
 def find_by_city(city):
@@ -30,9 +35,7 @@ def find_by_city(city):
     }
 
     response = requests.get(url=ENDPOINT, params=params)
-    data = response.json()
-    for value in data:
-        print(value['city'])
+    values(response)
 
 
 
@@ -42,9 +45,7 @@ def find_by_state(state):
     }
 
     response = requests.get(url=ENDPOINT, params=params)
-    data = response.json()
-    for value in data:
-        print(value['state'])
+    values(response)
 
 
 
@@ -54,20 +55,19 @@ def find_by_brewery_type(brewery_type):
     }
 
     response = requests.get(url=ENDPOINT, params=params)
-    data = response.json()
-    for value in data:
-        print(value['brewery_type'])
+    values(response)
 
 
 
 while True:
-    print("If you want to see all breweries, choose 1.")
-    print("If you want to search for a brewery by city, choose 2.")
-    print("If you want to search for a brewery by state, choose 3.")
-    print("If you want to search for a brewery by type, choose 4.")
-    print("Press 5 to exit.")
+    print("\n--- Open Brewery DB Menu ---")
+    print("1. View all breweries")
+    print("2. Search breweries by city")
+    print("3. Search breweries by state")
+    print("4. Search breweries by type")
+    print("5. Exit")
 
-    select_number = int(input())
+    select_number = int(input("Enter your choice (1-5):").strip())
     if select_number == 1:
         all_brewery()
     elif select_number == 2:

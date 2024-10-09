@@ -3,17 +3,4 @@
 
 {% block content %}
     <h1>Hello World</h1>
-    <p>{{ value }}</p>
-    <p>{{ result }}</p>
-    <p>
-        <ul>
-        {% for item in list %}
-        <li>
-            {{ item }}
-        </li>
-        {% endfor %}
-        </ul>
-    </p>
-
-<a href="{{ url_for('other') }}">Other</a>
 {% endblock %}

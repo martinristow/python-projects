@@ -1,42 +1,43 @@
-from flask import Flask, request
+from flask import Flask, render_template, redirect, url_for
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 
 @app.route('/')
-def home():
-    return "<h1>zdr</h1>"
+def index():
+    myvalue = "Martin Ristov"
+    myresult = 10 + 20
+    list = [10, 20, 30, 50, 80]
+    return render_template('index.html', value=myvalue, result=myresult, list=list)
 
 
-@app.route('/hello', methods=['POST', 'GET'])
-def hello():
-    if request.method == 'GET':
-        return 'You made a GET request\n'
-    elif request.method == 'POST':
-        return 'You made a POST request\n'
-    else:
-        return 'You will never see this message\n'
+@app.route('/redirect_endpoint')
+def redirect_endpoint():
+    return redirect(url_for('other'))
 
 
-@app.route('/greet/<name>')
-def greet(name):
-    return f"Hello {name}"
+@app.route('/other')
+def other():
+    text = 'Hello World'
+    return render_template('other.html', text=text)
 
 
-@app.route('/add/<int:number1>/<int:number2>')
-def add(number1, number2):
-    return f"{number1} + {number2} = {number2+number1}"
+# custom filter made by me
+@app.template_filter('alternate_case')
+def alternate_case(c):
+    return ''.join([c.upper() if i % 2 == 0 else c.lower() for i, c in enumerate(c)])
 
 
-@app.route('/handle_url_params')
-def handle_params():
-    if 'greeting' in request.args.keys() and 'name' in request.args.keys():
-        greeting = request.args.get('greeting')
-        name = request.args.get('name')
-        return f'{greeting}, {name}'
-    else:
-        return 'Some parameters are missing!'
+# custom filter made by me
+@app.template_filter('reverse_string')
+def reverse_string(s):
+    return s[::-1]
 
+
+# custom filter made by me
+@app.template_filter('repeat')
+def repeat(s, times=2):
+    return s * times
 
 
 if __name__ == "__main__":

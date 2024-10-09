@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Filter Page{% endblock %}
+
+{% block content %}
+    <h1>Filters</h1>
+
+    <p>{{ text }}</p>
+    <p>{{ text|upper }}</p>
+    <p>{{ text|lower }}</p>
+    <p>{{ text|title }}</p>
+    <p>{{ text|replace('l', 'L') }}</p>
+    <p>{{ text|reverse_string }}</p>
+    <p>{{ text|repeat }}</p>
+    <p>{{ text|repeat(5) }}</p>
+    <p>{{ text|alternate_case }}</p>
+{% endblock %}

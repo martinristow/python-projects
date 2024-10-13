@@ -22,6 +22,18 @@ def home():
     return render_template('index.html')
 
 
+@app.route('/records')
+def records():
+    return render_template('records.html')
+
+@app.route('/reports')
+def reports():
+    return render_template('reports.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if 'user_id' in session:

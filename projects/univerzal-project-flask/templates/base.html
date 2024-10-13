@@ -12,69 +12,62 @@
 </head>
 <body>
 
-<!--<nav>-->
-<!--    <ul>-->
-<!--        <li><a href="{{ url_for('home') }}">Home</a></li>-->
-<!--        {% if session.user_id %}-->
-<!--            <li><a href="{{ url_for('logout') }}">Logout</a></li>-->
-<!--        {% else %}-->
-<!--            <li><a href="{{ url_for('login') }}">Login</a></li>-->
-<!--            <li><a href="{{ url_for('register') }}">Register</a></li>-->
-<!--        {% endif %}-->
-<!--    </ul>-->
-<!--</nav>-->
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{{ url_for('home') }}">Univerzal</a>
+  <a class="navbar-brand" href="{{ url_for('home') }}">Универзал</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-
-
-
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="{{ url_for('home') }}">Doma</a>
+        <a class="nav-link" href="{{ url_for('home') }}">Дома</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('contact') }}">Kontakt</a>
+        <a class="nav-link" href="{{ url_for('contact') }}">Контакт</a>
       </li>
-        {% if session.user_id %}
-        <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('records') }}">Evidencija</a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('reports') }}">Izvestai</a>
+      {% if session.user_id %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('records') }}">Евиденција</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('logout') }}">Odjavi se</a>
+        <a class="nav-link" href="{{ url_for('reports') }}">Извештаи</a>
       </li>
-        {% else %}
+                      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Додавање
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{{ url_for('fiscal_account') }}">Додај сметка</a>
+          <a class="dropdown-item" href="{{ url_for('activity') }}">Додај активност</a>
+          <a class="dropdown-item" href="{{ url_for('yields') }}">Додај принос</a>
+        </div>
+      </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('login') }}">Najavi se</a>
+        <a class="nav-link" href="{{ url_for('logout') }}">Одјави се</a>
       </li>
-        <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('register') }}">Registriraj se</a>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('login') }}">Најави се</a>
       </li>
-        {% endif %}
-<!--      <li class="nav-item dropdown">-->
-<!--        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--          Dropdown link-->
-<!--        </a>-->
-<!--        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">-->
-<!--          <a class="dropdown-item" href="#">Action</a>-->
-<!--          <a class="dropdown-item" href="#">Another action</a>-->
-<!--          <a class="dropdown-item" href="#">Something else here</a>-->
-<!--        </div>-->
-<!--      </li>-->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('register') }}">Регистрирај се</a>
+      </li>
+      {% endif %}
     </ul>
   </div>
 </nav>
 
-{% block content %}
-{% endblock %}
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; {{ current_year }} Универзал. Сите права задржани.</p>
+    </div>
+</footer>
 
 {{ bootstrap.load_js() }}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

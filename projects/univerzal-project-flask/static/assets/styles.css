@@ -1,0 +1,31 @@
+html, body {
+    height: 100%; /* За да осигуриме дека висината на страницата е 100% */
+    margin: 0; /* Отстранувањето на подразбираниот margin */
+}
+
+body {
+    display: flex; /* Овозможува флексибилно позиционирање */
+    flex-direction: column; /* Распоредува елементите во колона */
+}
+
+.content {
+    flex: 1; /* Овозможува главниот дел да зазема максимум простор */
+}
+
+footer {
+    background-color: #343a40; /* Темна позадина за footer */
+    color: #ffffff; /* Светла текстура за текстот */
+    text-align: center; /* Центрирање на текстот */
+    padding: 20px 0; /* Горен и долен padding */
+}
+
+.content {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+        }
+
+footer p {
+    margin: 0;
+}

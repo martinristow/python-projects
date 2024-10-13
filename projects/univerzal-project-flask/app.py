@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, flash, session
-from models import db, User, Activity
-from forms import RegistrationForm, LoginForm, ActivityForm
+from models import db, User, Activity, Fiscal_Account, FieldYield
+from forms import RegistrationForm, LoginForm, ActivityForm, Fiscal_AccountForm, YieldForm
 from flask_bootstrap import Bootstrap5
 from werkzeug.security import generate_password_hash, check_password_hash
 import os, datetime
@@ -22,9 +22,21 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/yield')
+@app.route('/yield', methods=['POST', 'GET'])
 def yields():
-    return render_template('index.html')
+    if 'user_id' in session:
+        form = YieldForm()
+        if form.validate_on_submit():
+            field_name = form.field_name.data
+            agricultural_culture = form.agricultural_culture.data
+            field_area = form.field_area.data
+            field_yield = form.field_yield.data
+            new_yield = FieldYield(field_name=field_name, agricultural_culture=agricultural_culture, field_area=field_area, field_yield=field_yield)
+            db.session.add(new_yield)
+            db.session.commit()
+            return redirect(url_for('home'))
+        return render_template('yield.html', form=form)
+    return redirect(url_for('home'))
 
 
 @app.route('/activity', methods=['POST', 'GET'])
@@ -42,12 +54,23 @@ def activity():
             flash('You have been add new activity!', 'success')
             return redirect(url_for('home'))
         return render_template('activity.html', form=form)
+    return redirect(url_for('home'))
 
 
-@app.route('/fiscal_account')
+@app.route('/fiscal_account', methods=['POST', 'GET'])
 def fiscal_account():
-    return render_template('index.html')
-
+    if 'user_id' in session:
+        form = Fiscal_AccountForm()
+        if form.validate_on_submit():
+            products_name = form.products_name.data
+            price = form.price.data
+            buy_date = form.buy_date.data
+            new_fiscal_account = Fiscal_Account(products_name=products_name, price=price, buy_date=buy_date)
+            db.session.add(new_fiscal_account)
+            db.session.commit()
+            return redirect(url_for('records'))
+        return render_template('fiscal_account.html', form=form)
+    return redirect(url_for('home'))
 
 @app.context_processor
 def current_year():
@@ -55,7 +78,8 @@ def current_year():
 
 @app.route('/records')
 def records():
-    return render_template('records.html')
+    accounts = Fiscal_Account.query.order_by(Fiscal_Account.id.desc()).all()
+    return render_template('records.html', accounts=accounts)
 
 @app.route('/reports')
 def reports():

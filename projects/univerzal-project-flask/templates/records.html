@@ -1,8 +1,34 @@
 {% extends 'base.html' %}
 
-{% block title %}Records{% endblock %}
+{% block title %}Фискални Сметки{% endblock %}
 
 {% block content %}
-    <h1>Welcome to the record page!</h1>
-
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 text-success">Фискални сметки</h1>
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Евиденција</h5>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Вкупно сметки: {{ accounts|length }}</span></h5>
+                <p class="card-text">Деталите за сметките се подолу:</p>
+                <div class="list-group">
+                    {% for account in accounts %}
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 text-success">{{ account.products_name }}</h5>
+                                <small class="text-muted">{{ account.buy_date }}</small>
+                            </div>
+                            <p class="mb-1">Цена: <b>${{ account.price }}</b></strong></p>
+                        </a>
+                    {% endfor %}
+                </div>
+                {% if not accounts %}
+                    <div class="alert alert-warning mt-4" role="alert">
+                        No records found.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

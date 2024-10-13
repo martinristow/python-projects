@@ -3,15 +3,24 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-
-<h1>Login Form</h1>
-
-<form action="" method="POST">
-
-    {{ form.hidden_tag() }}
-    {{ form.email.label }} {{ form.email() }}
-    {{ form.password.label }} {{ form.password() }}
-    {{ form.submit() }}
-
-</form>
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 50vh;">
+        <div class="w-50">
+            <h1>Login Form</h1>
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.email.label }}
+                    {{ form.email(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label }}
+                    {{ form.password(class="form-control") }}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}

@@ -3,17 +3,36 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+        <div class="w-50">
+            <h1>Register Form</h1>
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
 
-<h1>Register Form</h1>
+                <div class="form-group">
+                    {{ form.username.label }}
+                    {{ form.username(class="form-control") }}
+                </div>
 
-<form action="" method="POST">
+                <div class="form-group">
+                    {{ form.email.label }}
+                    {{ form.email(class="form-control") }}
+                </div>
 
-    {{ form.hidden_tag() }}
-    {{ form.username.label }} {{ form.username() }}
-    {{ form.email.label }} {{ form.email() }}
-    {{ form.password.label }} {{ form.password() }}
-    {{ form.confirm_password.label }} {{ form.confirm_password() }}
-    {{ form.submit() }}
+                <div class="form-group">
+                    {{ form.password.label }}
+                    {{ form.password(class="form-control") }}
+                </div>
 
-</form>
+                <div class="form-group">
+                    {{ form.confirm_password.label }}
+                    {{ form.confirm_password(class="form-control") }}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}

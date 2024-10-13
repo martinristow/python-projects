@@ -32,4 +32,11 @@ class YieldForm(FlaskForm):
     agricultural_culture = StringField(label='Тип на култура', validators=[DataRequired()])
     field_area = StringField(label='Целата површина на нивата', validators=[DataRequired()])
     field_yield = StringField(label='Приност на нивата', validators=[DataRequired()])
-    submit = SubmitField('Креирај активност')
+    submit = SubmitField('Додај принос')
+
+
+class Fiscal_AccountForm(FlaskForm):
+    products_name = StringField(label='Имиња на продукти', validators=[DataRequired()])
+    price = StringField(label='Цена', validators=[DataRequired()])
+    buy_date = StringField(label='Датум на купување', validators=[DataRequired()])
+    submit = SubmitField('Креирај фискална сметка')

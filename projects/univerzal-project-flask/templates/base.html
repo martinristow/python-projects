@@ -2,30 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-        {% block styles %}
-            {{ bootstrap.load_css() }}
-        {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% block styles %}
+        {{ bootstrap.load_css() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/styles.css') }}">
+    {% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
 
-<nav>
-    <ul>
-        <li><a href="{{ url_for('home') }}">Home</a></li>
+<!--<nav>-->
+<!--    <ul>-->
+<!--        <li><a href="{{ url_for('home') }}">Home</a></li>-->
+<!--        {% if session.user_id %}-->
+<!--            <li><a href="{{ url_for('logout') }}">Logout</a></li>-->
+<!--        {% else %}-->
+<!--            <li><a href="{{ url_for('login') }}">Login</a></li>-->
+<!--            <li><a href="{{ url_for('register') }}">Register</a></li>-->
+<!--        {% endif %}-->
+<!--    </ul>-->
+<!--</nav>-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{{ url_for('home') }}">Univerzal</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+
+
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('home') }}">Doma</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('contact') }}">Kontakt</a>
+      </li>
         {% if session.user_id %}
-            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('records') }}">Evidencija</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('reports') }}">Izvestai</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('logout') }}">Odjavi se</a>
+      </li>
         {% else %}
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="{{ url_for('register') }}">Register</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('login') }}">Najavi se</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('register') }}">Registriraj se</a>
+      </li>
         {% endif %}
+<!--      <li class="nav-item dropdown">-->
+<!--        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--          Dropdown link-->
+<!--        </a>-->
+<!--        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">-->
+<!--          <a class="dropdown-item" href="#">Action</a>-->
+<!--          <a class="dropdown-item" href="#">Another action</a>-->
+<!--          <a class="dropdown-item" href="#">Something else here</a>-->
+<!--        </div>-->
+<!--      </li>-->
     </ul>
+  </div>
 </nav>
 
 {% block content %}
-
 {% endblock %}
 
-
 {{ bootstrap.load_js() }}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}Додавање на приноси{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+        <div class="w-50">
+            <h1>Форма за додавање на приноси</h1>
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ form.field_name.label }}
+                    {{ form.field_name(class="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.agricultural_culture.label }}
+                    {{ form.agricultural_culture(class="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.field_area.label }}
+                    {{ form.field_area(class="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.field_yield.label }}
+                    {{ form.field_yield(class="form-control") }}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

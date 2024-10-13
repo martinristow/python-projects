@@ -1,9 +1,9 @@
 from flask import Flask, render_template, redirect, url_for, flash, session
-from models import db, User
-from forms import RegistrationForm, LoginForm
+from models import db, User, Activity
+from forms import RegistrationForm, LoginForm, ActivityForm
 from flask_bootstrap import Bootstrap5
 from werkzeug.security import generate_password_hash, check_password_hash
-import os
+import os, datetime
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -21,6 +21,37 @@ db.init_app(app)
 def home():
     return render_template('index.html')
 
+
+@app.route('/yield')
+def yields():
+    return render_template('index.html')
+
+
+@app.route('/activity', methods=['POST', 'GET'])
+def activity():
+    if 'user_id' in session:
+        form = ActivityForm()
+        if form.validate_on_submit():
+            activity_name = form.activity_name.data
+            cultivated_agricultural_area = form.cultivated_agricultural_area.data
+            field_name = form.field_name.data
+            field_area = form.field_area.data
+            new_activity = Activity(activity_name=activity_name, cultivated_agricultural_area=cultivated_agricultural_area, field_name=field_name, field_area=field_area)
+            db.session.add(new_activity)
+            db.session.commit()
+            flash('You have been add new activity!', 'success')
+            return redirect(url_for('home'))
+        return render_template('activity.html', form=form)
+
+
+@app.route('/fiscal_account')
+def fiscal_account():
+    return render_template('index.html')
+
+
+@app.context_processor
+def current_year():
+    return {'current_year': datetime.datetime.now().year}
 
 @app.route('/records')
 def records():

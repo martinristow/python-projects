@@ -1,8 +1,35 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Додавање на фискални сметки{% endblock %}
 
 {% block content %}
-    <h1>Welcome to the home page!</h1>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+        <div class="w-50">
+            <h1>Форма за додавање на фискални сметки</h1>
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
 
+                <div class="form-group">
+                    {{ form.products_name.label }}
+                    {{ form.products_name(class="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.price.label }}
+                    {{ form.price(class="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.buy_date.label }}
+                    {{ form.buy_date(class="form-control") }}
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}

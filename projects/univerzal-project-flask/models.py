@@ -24,3 +24,11 @@ class FieldYield(db.Model):
     agricultural_culture = db.Column(db.String(50), nullable=False)
     field_area = db.Column(db.String(50), nullable=False)
     field_yield = db.Column(db.String(50), nullable=False)
+
+
+class Fiscal_Account(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    products_name = db.Column(db.String(255), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    buy_date = db.Column(db.String, nullable=False)
+

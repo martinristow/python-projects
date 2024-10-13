@@ -1,7 +1,9 @@
 html, body {
     height: 100%; /* За да осигуриме дека висината на страницата е 100% */
-    margin: 0; /* Отстранувањето на подразбираниот margin */
+    margin: 0; /* Отстранување на подразбираниот margin */
+    padding: 0; /* Отстранување на padding */
 }
+
 
 body {
     display: flex; /* Овозможува флексибилно позиционирање */
@@ -19,13 +21,55 @@ footer {
     padding: 20px 0; /* Горен и долен padding */
 }
 
-.content {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    margin: 20px;
-        }
+/*.content {*/
+/*    background-color: rgba(255, 255, 255, 0.9);*/
+/*    padding: 20px;*/
+/*    border-radius: 10px;*/
+/*    margin: 20px;*/
+/*        }*/
 
 footer p {
     margin: 0;
 }
+
+.carousel-item img {
+    height: 739px; /* Поставете висина на сликите */
+    object-fit: cover; /* Поставете сликите да се покријат */
+
+}
+
+
+ .carousel-container {
+            position: relative;
+        }
+
+
+/*.navbar-custom {*/
+/*    !*background-color: rgba(26, 26, 26, 0.8); !* Полупровидна темно сива позадина *!*!*/
+/*    position: relative; !* Позиционирање во нормалниот тек на документот *!*/
+/*    left: 0; !* Почнува од левиот крај *!*/
+/*    right: 0; !* До десниот крај *!*/
+/*    z-index: 10; !* Над останатите елементи *!*/
+/*    padding: 10px 0; !* Намалено padding за горе и долу *!*/
+/*    margin: 0; !* Отстранување на било кој надворешен margin *!*/
+/*    width: 100vw; !* Ширина од 100% на видливата ширина на прозорецот *!*/
+/*    padding-left: 0; !* Отстранување на padding на левата страна *!*/
+/*    padding-right: 0; !* Отстранување на padding на десната страна *!*/
+/*    backdrop-filter: blur(10px); !* Замаглување за подобра видливост *!*/
+/*}*/
+
+/*!* Навигациони линкови *!*/
+/*.navbar-custom a {*/
+/*    color: #ffffff; !* Бела боја за текстот *!*/
+/*    font-weight: bold; !* Bold текст *!*/
+/*    font-size: 17px; !* Големина на текстот *!*/
+/*    padding: 5px 20px; !* Внатрешен простор околу линковите *!*/
+/*    text-decoration: none; !* Без подцртување *!*/
+/*    transition: all 0.3s ease; !* Ефект за премин *!*/
+/*}*/
+
+/* Ефект при hover */
+/*.navbar-custom a:hover {*/
+/*    transform: scale(1.1); !* Зголемување на елементот при hover *!*/
+/*    color: #ffffff; !* Темно жолта боја при hover *!*/
+/*}*/

@@ -4,15 +4,32 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField(label='Username', validators=[DataRequired(), Length(min=3, max=12)])
-    email = StringField(label='Email', validators=[DataRequired(), Email()])
-    password = PasswordField(label='Password', validators=[DataRequired(), Length(min=7)])
-    confirm_password = PasswordField(label='Confirm Password', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Sign Up')
+    username = StringField(label='Корисничко име', validators=[DataRequired(), Length(min=3, max=12)])
+    email = StringField(label='Емаил', validators=[DataRequired(), Email()])
+    password = PasswordField(label='Лозинка', validators=[DataRequired(), Length(min=7)])
+    confirm_password = PasswordField(label='Потврди лозинка', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Регистрирај се')
 
 
 
 class LoginForm(FlaskForm):
-    email = StringField(label='Email', validators=[DataRequired(), Email()])
-    password = PasswordField(label='Password', validators=[DataRequired()])
-    submit = SubmitField(label='Login')
+    email = StringField(label='Емаил', validators=[DataRequired(), Email()])
+    password = PasswordField(label='Лозинка', validators=[DataRequired()])
+    submit = SubmitField(label='Најави се')
+
+
+
+class ActivityForm(FlaskForm):
+    activity_name = StringField(label='Име на активноста', validators=[DataRequired()])
+    cultivated_agricultural_area = StringField(label='Обработена површина', validators=[DataRequired()])
+    field_name = StringField(label='Име на нивата', validators=[DataRequired()])
+    field_area = StringField(label='Целата површина на нивата', validators=[DataRequired()])
+    submit = SubmitField('Креирај активност')
+
+
+class YieldForm(FlaskForm):
+    field_name = StringField(label='Име на нивата', validators=[DataRequired()])
+    agricultural_culture = StringField(label='Тип на култура', validators=[DataRequired()])
+    field_area = StringField(label='Целата површина на нивата', validators=[DataRequired()])
+    field_yield = StringField(label='Приност на нивата', validators=[DataRequired()])
+    submit = SubmitField('Креирај активност')

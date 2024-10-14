@@ -74,6 +74,10 @@ footer p {
 /*    color: #ffffff; !* Темно жолта боја при hover *!*/
 /*}*/
 
+.navbar{
+    padding-left:20px
+}
+
 .text-justify {
     text-align: justify;
 }

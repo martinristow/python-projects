@@ -33,7 +33,7 @@ footer p {
 }
 
 .carousel-item img {
-    height: 739px; /* Поставете висина на сликите */
+    height: 680px; /* Поставете висина на сликите */
     object-fit: cover; /* Поставете сликите да се покријат */
 
 }
@@ -73,3 +73,7 @@ footer p {
 /*    transform: scale(1.1); !* Зголемување на елементот при hover *!*/
 /*    color: #ffffff; !* Темно жолта боја при hover *!*/
 /*}*/
+
+.text-justify {
+    text-align: justify;
+}

@@ -22,6 +22,15 @@ def home():
     return render_template('index.html')
 
 
+@app.route('/services')
+def services():
+    return render_template('services.html')
+
+@app.route('/prices')
+def price():
+    return render_template('prices.html')
+
+
 @app.route('/yield', methods=['POST', 'GET'])
 def yields():
     if 'user_id' in session:
